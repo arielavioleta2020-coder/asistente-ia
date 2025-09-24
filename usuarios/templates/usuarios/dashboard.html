@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h3><i class="fas fa-tachometer-alt"></i> Dashboard Principal</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-4">
+                        <div class="col-md-8">
+                            <h4>Bienvenido, {{ user.username }}!</h4>
+                            <p class="text-muted">Plataforma de Competencias Digitales</p>
+                        </div>
+                        <div class="col-md-4 text-end">
+                            <a href="{% url 'perfil_usuario' %}" class="btn btn-outline-primary">
+                                <i class="fas fa-user"></i> Mi Perfil
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Tarjeta de Diagnóstico - URL TEMPORAL -->
+                        <div class="col-md-6 mb-4">
+                            <div class="card h-100">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-clipboard-check fa-3x text-primary mb-3"></i>
+                                    <h5>Diagnóstico Inicial</h5>
+                                    <p class="card-text">Evalúa tus competencias digitales</p>
+                                    <a href="/diagnostico/iniciar/" class="btn btn-primary">Comenzar Diagnóstico</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tarjeta de Progreso -->
+                        <div class="col-md-6 mb-4">
+                            <div class="card h-100">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-chart-line fa-3x text-success mb-3"></i>
+                                    <h5>Mi Progreso</h5>
+                                    <p class="card-text">Revisa tus resultados y avances</p>
+                                    <a href="/diagnostico/dashboard/" class="btn btn-success">Ver Progreso</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

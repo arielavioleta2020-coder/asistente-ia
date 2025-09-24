@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Diagnóstico de Competencias Digitales</h2>
+    <p>Responde las siguientes preguntas para evaluar tus competencias digitales.</p>
+    
+    <form method="post">
+        {% csrf_token %}
+        
+        {% for field in form %}
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Pregunta {{ forloop.counter }}</h5>
+                    <p class="card-text">{{ field.label }}</p>
+                    <div class="form-group">
+                        {% for choice in field %}
+                            <div class="form-check">
+                                {{ choice.tag }}
+                                <label class="form-check-label" for="{{ choice.id_for_label }}">
+                                    {{ choice.choice_label }}
+                                </label>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        
+        <button type="submit" class="btn btn-primary btn-lg">Finalizar Diagnóstico</button>
+    </form>
+</div>
+{% endblock %}

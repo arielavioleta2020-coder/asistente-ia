@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h4>Tutor IA - Asistente Virtual</h4>
+            </div>
+            <div class="card-body">
+                <div id="chat-container" style="height: 400px; overflow-y: scroll; border: 1px solid #ccc; padding: 10px; margin-bottom: 15px;">
+                    <div class="alert alert-info">
+                        <strong>Tutor IA:</strong> ¡Hola! Soy tu tutor virtual. Puedo ayudarte con temas de seguridad digital, ofimática y comunicación digital. ¿En qué necesitas ayuda?
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <input type="text" id="pregunta-input" class="form-control" placeholder="Escribe tu pregunta..." onkeypress="if(event.keyCode==13) enviarPregunta()">
+                    <button class="btn btn-primary" onclick="enviarPregunta()">Enviar</button>
+                </div>
+                
+                <div class="mt-3">
+                    <small class="text-muted">Ejemplos de preguntas: "¿Qué es el phishing?", "¿Cómo usar Excel?", "¿Qué es PowerPoint?"</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function enviarPregunta() {
+    const input = document.getElementById('pregunta-input');
+    const pregunta = input.value.trim();
+    
+    if (!pregunta) return;
+    
+    // Agregar pregunta al chat
+    const chatContainer = document.getElementById('chat-container');
+    chatContainer.innerHTML += `
+        <div class="alert alert-secondary text-end">
+            <strong>Tú:</strong> ${pregunta}
+        </div>
+    `;
+    
+    // Limpiar input
+    input.value = '';
+    
+    // Enviar pregunta al servidor
+    fetch('/tutor/chat/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': '{{ csrf_token }}'
+        },
+        body: JSON.stringify({pregunta: pregunta})
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Agregar respuesta al chat
+        chatContainer.innerHTML += `
+            <div class="alert alert-info">
+                <strong>Tutor IA:</strong> ${data.respuesta}
+            </div>
+        `;
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        chatContainer.innerHTML += `
+            <div class="alert alert-danger">
+                <strong>Error:</strong> No se pudo conectar con el tutor IA.
+            </div>
+        `;
+    });
+    
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+}
+</script>
+{% endblock %}
