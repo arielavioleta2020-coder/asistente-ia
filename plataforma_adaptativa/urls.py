@@ -28,9 +28,15 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(next_page='home'), name='logout'),
     path('registro/', usuarios_views.registro, name='registro'),
     
+<<<<<<< HEAD
     path('diagnostico/', include('diagnostico.urls')),
     path('usuarios/', include('usuarios.urls', namespace='usuarios')),
     path('tutor_ia/', include('tutor_ia.urls', namespace='tutor_ia')),
+=======
+    # 👇 CORREGIR ESTAS LÍNEAS (quitar los puntos y corchetes)
+    path('diagnostico/', include('diagnostico.urls')),
+    path('usuarios/', include('usuarios.urls')),
+>>>>>>> fee057efb0ba0c7861410146aa6286c538829f5a
 ]
 
 # 👇 AGREGAR esto para archivos estáticos en desarrollo

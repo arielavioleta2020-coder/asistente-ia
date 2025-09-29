@@ -77,7 +77,11 @@ WSGI_APPLICATION = 'plataforma_adaptativa.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
+<<<<<<< HEAD
         'NAME': 'IA',
+=======
+        'NAME': 'asistenteia',
+>>>>>>> fee057efb0ba0c7861410146aa6286c538829f5a
         'USER': 'postgres',
         'PASSWORD': '1234',
         'HOST': 'localhost',

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 from django.contrib import admin
 from .models import Modulo, Pregunta, OpcionRespuesta, DiagnosticoUsuario, RespuestaUsuario
@@ -30,3 +31,8 @@ def crear_preguntas_ejemplo():
 		for opcion_texto, valor in opciones:
 			OpcionRespuesta.objects.get_or_create(pregunta=pregunta, texto=opcion_texto, valor=valor)
 	print("Preguntas y opciones de ejemplo creadas.")
+=======
+from django.contrib import admin
+
+# Register your models here.
+>>>>>>> fee057efb0ba0c7861410146aa6286c538829f5a

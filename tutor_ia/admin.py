@@ -1,4 +1,5 @@
 from django.contrib import admin
+<<<<<<< HEAD
 from .models import PreguntaFrecuente, Conversacion, Mensaje
 
 @admin.register(PreguntaFrecuente)
@@ -22,3 +23,11 @@ class MensajeAdmin(admin.ModelAdmin):
     def contenido_truncado(self, obj):
         return obj.contenido[:50] + '...' if len(obj.contenido) > 50 else obj.contenido
     contenido_truncado.short_description = 'Contenido'
+=======
+from .models import PreguntaFrecuente
+
+@admin.register(PreguntaFrecuente)
+class PreguntaFrecuenteAdmin(admin.ModelAdmin):
+    list_display = ['pregunta', 'modulo']
+    list_filter = ['modulo']
+>>>>>>> fee057efb0ba0c7861410146aa6286c538829f5a

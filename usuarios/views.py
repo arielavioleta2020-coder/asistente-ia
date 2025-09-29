@@ -8,7 +8,11 @@ from .forms import RegistroForm
 def home(request):
     """Página de inicio - Redirige según autenticación"""
     if request.user.is_authenticated:
+<<<<<<< HEAD
         return redirect('usuarios:dashboard_usuario')
+=======
+        return redirect('dashboard_usuario')
+>>>>>>> fee057efb0ba0c7861410146aa6286c538829f5a
     else:
         return redirect('login')
 
@@ -20,7 +24,11 @@ def registro(request):
             user = form.save()
             login(request, user)
             messages.success(request, f'¡Bienvenido/a {user.first_name or user.username}! Registro exitoso.')
+<<<<<<< HEAD
             return redirect('usuarios:dashboard_usuario')
+=======
+            return redirect('dashboard_usuario')
+>>>>>>> fee057efb0ba0c7861410146aa6286c538829f5a
         else:
             messages.error(request, 'Por favor corrige los errores.')
     else:
@@ -38,7 +46,11 @@ def custom_login(request):
         if user is not None:
             login(request, user)
             messages.success(request, f'¡Bienvenido/a {user.first_name or user.username}!')
+<<<<<<< HEAD
             return redirect('usuarios:dashboard_usuario')
+=======
+            return redirect('dashboard_usuario')
+>>>>>>> fee057efb0ba0c7861410146aa6286c538829f5a
         else:
             messages.error(request, 'Usuario o contraseña incorrectos.')
     
@@ -65,7 +77,11 @@ def perfil_usuario(request):
         user.email = request.POST.get('email', user.email)
         user.save()
         messages.success(request, 'Perfil actualizado correctamente.')
+<<<<<<< HEAD
         return redirect('usuarios:perfil_usuario')
+=======
+        return redirect('perfil_usuario')
+>>>>>>> fee057efb0ba0c7861410146aa6286c538829f5a
     
     return render(request, 'usuarios/perfil.html')
 
@@ -79,7 +95,11 @@ def editar_perfil(request):
         user.email = request.POST.get('email', '')
         user.save()
         messages.success(request, 'Perfil actualizado correctamente.')
+<<<<<<< HEAD
         return redirect('usuarios:perfil_usuario')
+=======
+        return redirect('perfil_usuario')
+>>>>>>> fee057efb0ba0c7861410146aa6286c538829f5a
     
     return render(request, 'usuarios/editar_perfil.html')
 
@@ -92,7 +112,14 @@ def registro_simple(request):
             user = form.save()
             login(request, user)
             messages.success(request, '¡Registro exitoso! Bienvenido/a.')
+<<<<<<< HEAD
             return redirect('usuarios:dashboard_usuario')
     else:
         form = UserCreationForm()
     return render(request, 'usuarios/registro_simple.html', {'form': form})
+=======
+            return redirect('dashboard_usuario')
+    else:
+        form = UserCreationForm()
+    return render(request, 'usuarios/registro_simple.html', {'form': form})
+>>>>>>> fee057efb0ba0c7861410146aa6286c538829f5a

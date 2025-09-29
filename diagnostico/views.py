@@ -30,6 +30,7 @@ def iniciar_diagnostico(request):
                 fecha_inicio=timezone.now()
             )
         
+<<<<<<< HEAD
         # Preguntas fijas directamente en el código
         preguntas_fijas = [
             {
@@ -101,6 +102,63 @@ def iniciar_diagnostico(request):
             return redirect('resultado_diagnostico')
         return render(request, 'diagnostico/cuestionario.html', {
             'preguntas': preguntas
+=======
+        # Obtener todas las preguntas ordenadas
+        preguntas = Pregunta.objects.all().order_by('modulo__id', 'orden')
+        
+        if not preguntas.exists():
+            messages.warning(request, "No hay preguntas disponibles para el diagnóstico.")
+            return redirect('dashboard_usuario')
+        
+        if request.method == 'POST':
+            # Procesar respuestas del formulario
+            for key, value in request.POST.items():
+                if key.startswith('pregunta_'):
+                    try:
+                        pregunta_id = key.replace('pregunta_', '')
+                        pregunta = get_object_or_404(Pregunta, id=pregunta_id)
+                        opcion_seleccionada = get_object_or_404(OpcionRespuesta, id=value)
+                        
+                        # Guardar o actualizar respuesta
+                        respuesta, created = RespuestaUsuario.objects.get_or_create(
+                            diagnostico=diagnostico,
+                            pregunta=pregunta
+                        )
+                        respuesta.opcion_seleccionada = opcion_seleccionada
+                        respuesta.fecha_respuesta = timezone.now()
+                        respuesta.save()
+                        
+                    except (Pregunta.DoesNotExist, OpcionRespuesta.DoesNotExist):
+                        messages.error(request, f"Error al procesar la pregunta {pregunta_id}")
+                        continue
+            
+            # Marcar diagnóstico como completado
+            diagnostico.completado = True
+            diagnostico.fecha_finalizacion = timezone.now()
+            diagnostico.save()
+            
+            messages.success(request, "¡Diagnóstico completado exitosamente!")
+            return redirect('resultado_diagnostico')
+        
+        # Obtener respuestas previas para pre-seleccionar opciones
+        respuestas_previas = RespuestaUsuario.objects.filter(
+            diagnostico=diagnostico
+        ).select_related('opcion_seleccionada')
+        
+        # Crear formulario con datos iniciales si existen respuestas previas
+        initial_data = {}
+        for respuesta in respuestas_previas:
+            initial_data[f'pregunta_{respuesta.pregunta.id}'] = respuesta.opcion_seleccionada.id
+        
+        form = DiagnosticoForm(preguntas=preguntas, initial=initial_data)
+        
+        return render(request, 'diagnostico/cuestionario.html', {
+            'form': form,
+            'preguntas': preguntas,
+            'diagnostico': diagnostico,
+            'total_preguntas': preguntas.count(),
+            'preguntas_respondidas': respuestas_previas.count()
+>>>>>>> fee057efb0ba0c7861410146aa6286c538829f5a
         })
     
     except Exception as e:
@@ -120,6 +178,7 @@ def resultado_diagnostico(request):
         ).order_by('-fecha_finalizacion').first()
         
         if not diagnostico:
+<<<<<<< HEAD
             # Mostrar una página de resultados genérica con puntuación simulada
             puntuacion_total = 15  # ejemplo: 3 puntos por cada una de 5 preguntas
             puntuacion_maxima = 25 # 5 preguntas, máximo 5 puntos cada una
@@ -134,6 +193,10 @@ def resultado_diagnostico(request):
                 'modulos_evaluados': 1,
                 'mensaje_generico': 'Gracias por completar el diagnóstico. Tus respuestas no se guardan en el sistema, pero aquí tienes una puntuación de referencia.'
             })
+=======
+            messages.warning(request, "No has completado ningún diagnóstico aún.")
+            return redirect('iniciar_diagnostico')
+>>>>>>> fee057efb0ba0c7861410146aa6286c538829f5a
         
         # Obtener todas las respuestas del diagnóstico
         respuestas = RespuestaUsuario.objects.filter(

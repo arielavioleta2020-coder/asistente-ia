@@ -65,7 +65,11 @@
                 <ul class="navbar-nav me-auto">
                     {% if user.is_authenticated %}
                     <li class="nav-item">
+<<<<<<< HEAD
                         <a class="nav-link" href="{% url 'usuarios:dashboard_usuario' %}">
+=======
+                        <a class="nav-link" href="{% url 'dashboard_usuario' %}">
+>>>>>>> fee057efb0ba0c7861410146aa6286c538829f5a
                             <i class="fas fa-tachometer-alt"></i> Dashboard
                         </a>
                     </li>
@@ -84,7 +88,11 @@
                             <i class="fas fa-user"></i> {{ user.username }}
                         </a>
                         <ul class="dropdown-menu">
+<<<<<<< HEAD
                             <li><a class="dropdown-item" href="{% url 'usuarios:perfil_usuario' %}">
+=======
+                            <li><a class="dropdown-item" href="{% url 'perfil_usuario' %}">
+>>>>>>> fee057efb0ba0c7861410146aa6286c538829f5a
                                 <i class="fas fa-user-circle"></i> Mi Perfil
                             </a></li>
                             <li><hr class="dropdown-divider"></li>
@@ -164,10 +172,17 @@
             return new bootstrap.Tooltip(tooltipTriggerEl)
         });
         
+<<<<<<< HEAD
         // Auto-ocultar solo los mensajes flash (alert-dismissible) después de 5 segundos
         document.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() {
                 var alerts = document.querySelectorAll('.alert-dismissible');
+=======
+        // Auto-ocultar mensajes después de 5 segundos
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                var alerts = document.querySelectorAll('.alert');
+>>>>>>> fee057efb0ba0c7861410146aa6286c538829f5a
                 alerts.forEach(function(alert) {
                     var bsAlert = new bootstrap.Alert(alert);
                     bsAlert.close();

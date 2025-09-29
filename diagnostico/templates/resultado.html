@@ -13,9 +13,15 @@
                     <h5 class="card-title">{{ modulo }}</h5>
                     <div class="progress mb-3">
                         <div class="progress-bar" role="progressbar" 
+<<<<<<< HEAD
                             style="width: {{ datos.porcentaje }}%"
                             aria-valuenow="{{ datos.porcentaje }}" 
                             aria-valuemin="0" aria-valuemax="100">
+=======
+                             style="width: {{ datos.porcentaje }}%"
+                             aria-valuenow="{{ datos.porcentaje }}" 
+                             aria-valuemin="0" aria-valuemax="100">
+>>>>>>> fee057efb0ba0c7861410146aa6286c538829f5a
                             {{ datos.porcentaje|floatformat:1 }}%
                         </div>
                     </div>
@@ -33,9 +39,12 @@
     </div>
     {% endif %}
     
+<<<<<<< HEAD
     <div class="alert alert-info mt-4" role="alert">
         <strong>Nota:</strong> Gracias por completar el diagnóstico. Recuerda que tus resultados son una referencia para tu aprendizaje y desarrollo digital.
     </div>
+=======
+>>>>>>> fee057efb0ba0c7861410146aa6286c538829f5a
     <a href="{% url 'dashboard_diagnostico' %}" class="btn btn-primary">Ver Recomendaciones</a>
 </div>
 {% endblock %}

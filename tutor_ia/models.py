@@ -1,4 +1,5 @@
 from django.db import models
+<<<<<<< HEAD
 from django.contrib.auth.models import User
 
 class PreguntaFrecuente(models.Model):
@@ -31,3 +32,15 @@ class Mensaje(models.Model):
 
     def __str__(self):
         return f"{'Usuario' if self.es_usuario else 'IA'}: {self.contenido[:50]}..."
+=======
+from capacitacion.models import Modulo
+
+class PreguntaFrecuente(models.Model):
+    modulo = models.ForeignKey(Modulo, on_delete=models.CASCADE)
+    pregunta = models.TextField()
+    respuesta = models.TextField()
+    palabras_clave = models.TextField(help_text="Palabras clave separadas por coma")
+    
+    def __str__(self):
+        return self.pregunta[:50] + "..."
+>>>>>>> fee057efb0ba0c7861410146aa6286c538829f5a

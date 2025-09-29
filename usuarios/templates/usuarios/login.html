@@ -114,6 +114,10 @@
                         {% endfor %}
                     {% endif %}
 
+<<<<<<< HEAD
+=======
+                    <!-- CORRECCIÓN: Agregar action a la URL de login -->
+>>>>>>> fee057efb0ba0c7861410146aa6286c538829f5a
                     <form method="post" action="{% url 'login' %}">
                         {% csrf_token %}
                         <div class="mb-3">
@@ -133,6 +137,10 @@
                         <p>¿No tienes cuenta? <a href="{% url 'registro' %}" class="text-decoration-none">Regístrate aquí</a></p>
                     </div>
 
+<<<<<<< HEAD
+=======
+                    <!-- Sección de Diagnóstico -->
+>>>>>>> fee057efb0ba0c7861410146aa6286c538829f5a
                     <div class="diagnostico-section">
                         <h5 class="text-center mb-3"><i class="fas fa-clipboard-check"></i> Diagnóstico Inicial</h5>
                         <p class="text-center">Evalúa tus competencias digitales en solo 5 minutos</p>
@@ -143,8 +151,15 @@
                             <li><i class="fas fa-check-circle"></i> Plan de aprendizaje adaptativo</li>
                         </ul>
                         
+<<<<<<< HEAD
                         <div class="text-center mt-3">
                             {% if user.is_authenticated %}
+=======
+                        <!-- CORRECCIÓN: Botón condicional mejorado -->
+                        <div class="text-center mt-3">
+                            {% if user.is_authenticated %}
+                                <!-- Usuario autenticado - mostrar botón de diagnóstico -->
+>>>>>>> fee057efb0ba0c7861410146aa6286c538829f5a
                                 <a href="{% url 'iniciar_diagnostico' %}" class="btn btn-success btn-lg w-100">
                                     <i class="fas fa-play-circle"></i> Iniciar Diagnóstico
                                 </a>
@@ -152,6 +167,10 @@
                                     Bienvenido de nuevo, {{ user.username }}
                                 </small>
                             {% else %}
+<<<<<<< HEAD
+=======
+                                <!-- Usuario no autenticado - mostrar opciones -->
+>>>>>>> fee057efb0ba0c7861410146aa6286c538829f5a
                                 <div class="d-grid gap-2">
                                     <a href="{% url 'registro' %}" class="btn btn-success btn-lg">
                                         <i class="fas fa-user-plus"></i> Regístrate para Comenzar
@@ -170,13 +189,23 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     
+<<<<<<< HEAD
     <script>
+=======
+    <!-- Script para mejorar la experiencia de usuario -->
+    <script>
+        // Focus en el primer campo al cargar la página
+>>>>>>> fee057efb0ba0c7861410146aa6286c538829f5a
         document.addEventListener('DOMContentLoaded', function() {
             const usernameField = document.querySelector('input[name="username"]');
             if (usernameField) {
                 usernameField.focus();
             }
             
+<<<<<<< HEAD
+=======
+            // Mostrar mensaje de carga al enviar el formulario
+>>>>>>> fee057efb0ba0c7861410146aa6286c538829f5a
             const form = document.querySelector('form');
             if (form) {
                 form.addEventListener('submit', function() {
