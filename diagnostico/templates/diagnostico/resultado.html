@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Resultados de tu Diagnóstico</h2>
+    
+    {% if resultados %}
+    <div class="row">
+        {% for modulo, datos in resultados.items %}
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ modulo }}</h5>
+                    <div class="progress mb-3">
+                        <div class="progress-bar" role="progressbar" 
+                            style="width: {{ datos.porcentaje }}%"
+                            aria-valuenow="{{ datos.porcentaje }}" 
+                            aria-valuemin="0" aria-valuemax="100">
+                            {{ datos.porcentaje|floatformat:1 }}%
+                        </div>
+                    </div>
+                    <p class="card-text">
+                        Puntuación: {{ datos.puntuacion_total }} / {{ datos.puntuacion_maxima }}
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% elif mensaje_generico %}
+    <div class="alert alert-info" role="alert">
+        {{ mensaje_generico }}<br>
+        <strong>Puntuación simulada:</strong> {{ puntuacion_total_general }} / {{ puntuacion_maxima_general }}<br>
+        <strong>Porcentaje:</strong> {{ porcentaje_general|floatformat:1 }}%
+    </div>
+    {% else %}
+    <div class="alert alert-warning" role="alert">
+        No se encontraron resultados para mostrar.
+    </div>
+    {% endif %}
+    <div class="alert alert-info mt-4" role="alert" style="transition:none; background: #e3f2fd; border: 2px solid #1976d2; color: #0d47a1; font-size: 1.3em; font-weight: bold; text-align: center;">
+        <span style="font-size:1.5em;">&#x1F389;</span> <strong>¡Diagnóstico completado!</strong><br>
+        Gracias por completar el diagnóstico. Recuerda que tus resultados son una referencia para tu aprendizaje y desarrollo digital.
+    </div>
+    <a href="{% url 'dashboard_diagnostico' %}" class="btn btn-primary">Ver Recomendaciones</a>
+</div>
+{% endblock %}
