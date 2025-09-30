@@ -1,0 +1,18 @@
+# Archivos compilados de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Entorno virtual
+venv/
+env/
+
+# PostgreSQL (no incluir archivos de base de datos)
+*.sqlite3
+
+# Archivos de configuración local
+*.local.py
+
+# Logs
+*.log
