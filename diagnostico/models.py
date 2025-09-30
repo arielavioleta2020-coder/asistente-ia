@@ -30,14 +30,6 @@ class DiagnosticoUsuario(models.Model):
     fecha_inicio = models.DateTimeField(auto_now_add=True)
     fecha_finalizacion = models.DateTimeField(null=True, blank=True)
     completado = models.BooleanField(default=False)
-<<<<<<< HEAD
-
-    class Meta:
-        db_table = 'diagnostico_diagnostico'
-
-=======
-    
->>>>>>> fee057efb0ba0c7861410146aa6286c538829f5a
     def __str__(self):
         return f"Diagnóstico de {self.usuario.username}"
 
@@ -47,10 +39,4 @@ class RespuestaUsuario(models.Model):
     opcion_seleccionada = models.ForeignKey(OpcionRespuesta, on_delete=models.CASCADE)
     fecha_respuesta = models.DateTimeField(auto_now_add=True)
 
-<<<<<<< HEAD
-    class Meta:
-        db_table = 'diagnostico_respuestadiagnostico'
-
-=======
->>>>>>> fee057efb0ba0c7861410146aa6286c538829f5a
 # Create your models here.
